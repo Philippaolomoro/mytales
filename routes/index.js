@@ -9,10 +9,6 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.get("/register", isGuest, (req, res) => {
-	res.render("register");
-});
-
 router.get("/login", isGuest, (req, res) => {
 	res.render("login");
 });

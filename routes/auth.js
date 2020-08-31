@@ -2,15 +2,6 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 
-// @desc login auth
-router.post(
-	"/register",
-	passport.authenticate("local-signup", { failureRedirect: "/register" }),
-	(req, res) => {
-		res.redirect("/dashboard");
-	}
-);
-
 // @desc auth with google
 router.get(
 	"/google",
