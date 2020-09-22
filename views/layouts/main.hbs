@@ -12,6 +12,7 @@
 </head>
 
 <body>
+   
     <div class="container">
         {{{body}}}
     </div>
@@ -20,6 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
         integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous">
         </script>
+
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'))
+        M.FormSelect.init(document.querySelector('#status'))
+    </script>
 </body>
 
 </html>

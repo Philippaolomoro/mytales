@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Tales</title>
-</head>
-
-<body>
-    {{> _header}}
-    <div class="card-panel teal lighten-2 white-text">
-        <h3>Hello {{name}}</h3>
-        <p>Here are your stories</p>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
-        integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
-
-    {{!-- to make/reload the side nav (functional) --}}
-    {{!-- ck editor to replace body text area in add_form.hbs --}}
-
-    <script>
-        M.Sidenav.init(document.querySelector('.sidenav'))
-    </script>
-</body>
-
-</html>
-
+ {{> _header}}
+ {{> _add_stories}} 
+    
+<div class="card-panel teal lighten-2">
+    <h3>Hello{{user.displayName}}</h3>
+    <p>Here are your stories</p>
+    {{#if stories}}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each stories}}
+                <tr>
+                    <td><a href="/stories/{{_id}}">{{title}}</a></td>
+                    <td>{{createdAt}}</td>
+                    <td><span class="dash-status">{{status}}</span></td>
+                    <td></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>You have not created any stories</p>
+    {{/if}}
+</div>

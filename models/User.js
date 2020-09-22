@@ -2,20 +2,26 @@ const mongoose = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
 
 const UserSchema = new mongoose.Schema({
-	facebook: {
-		id: String,
-		accessToken: String,
-		name: String,
-		email: String,
-		image: String
+
+	displayName: {
+		type: String,
 	},
-	google: {
-		id: String,
-		accessToken: String,
-		name: String,
-		email: String,
-		image: String,
+	firstName:{
+		type: String,
 	},
+	lastName: {
+		type: String,
+	},
+	email:{
+		type: String,
+	},
+	image: {
+		type: String,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now
+	}
 });
 
 // encrypt password
