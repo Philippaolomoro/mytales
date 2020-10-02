@@ -11,7 +11,6 @@ const passport = require("passport");
 
 const session = require("express-session");
 const MongoStore= require("connect-mongo")(session)
-const getPort = require("get-port");
 
 const connectDB = require("./config/database");
 const handlebars = require("./helpers/handlebars")
