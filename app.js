@@ -1,5 +1,7 @@
 const path = require("path");
+const compression = require("compression");
 const express = require("express");
+const helmet = require("helmet");
 
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -24,6 +26,8 @@ require("./config/passport")(passport);
 connectDB();
 
 const app = express();
+
+app.use(helmet())
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -54,6 +58,9 @@ app.use(passport.session());
 
 // Static
 app.use(express.static(path.join(__dirname, "public")));
+
+// routes compression
+app.use(compression())
 
 // Routes
 app.use("/", require("./routes/index"));
