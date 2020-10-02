@@ -76,10 +76,3 @@ server.on("listening", () => {
 		console.log(`Tales app listening on port ${server.address().port}`)
 	}
 });
-
-server.on("error", async (error) => {
-	if (error.code === "EADDRINUSE") {
-		const newPort = await getPort();
-		server.listen(newPort);
-	}
-});
