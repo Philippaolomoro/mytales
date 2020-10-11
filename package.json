@@ -8,7 +8,7 @@
 	"description": "Public and private stories of user",
 	"main": "app.js",
 	"scripts": {
-		"start": "set NODE_ENV=production&& node app.js",
+		"start": "cross-env NODE_ENV=production node app",
 		"dev": "cross-env NODE_ENV=development nodemon app"
 	},
 	"author": "Philippa Olomoro",
