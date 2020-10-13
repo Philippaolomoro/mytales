@@ -8,8 +8,6 @@
 	"description": "Public and private stories of user",
 	"main": "app.js",
 	"scripts": {
-		"build": "cd client && npm run build",
-    "install": "cd client && npm install",
 		"start": "cross-env NODE_ENV=production node app",
 		"dev": "cross-env NODE_ENV=development nodemon app"
 	},
