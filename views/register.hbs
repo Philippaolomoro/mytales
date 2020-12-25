@@ -1,0 +1,45 @@
+
+{{> _messages}}
+<div>
+  <form action="/local-signup" method="POST">
+    <div>
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" id="firstName">
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" id="lastName">
+    </div>
+    <div>
+      <label for="displayName">username</label>
+      <input type="text" name="displayName" id="displayName">
+    </div>
+    <div>
+      <label for="email">email</label>
+      <input type="email" name="email" id="email">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <div>
+      <label for="password2">Confirm Password</label>
+      <input type="password" name="password2" id="password2">
+    </div>
+    <button type="submit">Register</button>
+  </form>
+  <br/>
+  <div class="section">
+    <a href="/auth/google" class="btn red darken-1">
+        <i class="fab fa-google left">Continue with google</i>
+    </a>
+  </div>
+  <div>
+    <p>Already have an account? </p>
+    <span><a href="/login">Login</a></span>
+  </div>
+  <div>
+    <p>Go back to the home page</p>
+    <a href="/">home</a>
+  </div>
+</div>

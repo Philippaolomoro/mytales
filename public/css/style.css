@@ -1,13 +1,66 @@
-body {
+/* body {
 	background-color: beige;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+} */
+/* main {
+	flex: 1 0 auto;
+} */
+
+#navbar{
+  display: flex;
+  justify-content: space-between;
 }
 
-main {
-	flex: 1 0 auto;
+
+.topnav {
+  background-color: #ffcdb2;
 }
-.footer-height {
-	display: flex;
+/* .topnav-sub-cont{
+	
+} */
+.page-footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #ffb4a2;
+	color: white;
+	text-align: center;
 }
+.footer-list-cont{
+	list-style-type: none;
+}
+.footer-list{
+	color: black;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+

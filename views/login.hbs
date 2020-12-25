@@ -6,19 +6,31 @@
             <div class="section">
                 <p class="lead">Create stories from your life and make them private or public</p>
             </div>
-            <div class="divider">
-
-            </div>
+            <form action="/local-login" method="POST">
+                <div>
+                    <label for="email">email</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div>
+                    <label for="password">password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <br/>
             <div class="section">
                 <a href="/auth/google" class="btn red darken-1">
                     <i class="fab fa-google left">Continue with google</i>
                 </a>
             </div>
-            <div class="section">
-                <a href="/auth/facebook" class="btn blue darken-4">
-                    <i class="fab fa-facebook left">Continue with facebook</i>
-                </a>
-            </div>
+        </div>
+        <div>
+            <p>Don't have an account?</p>
+            <span><a href="/register">Register</a></span>
+        </div>
+        <div>
+            <p>Go back to the home page</p>
+            <a href="/">home</a>
         </div>
     </div>
 </div>

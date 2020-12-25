@@ -13,7 +13,9 @@ const session = require("express-session");
 const MongoStore= require("connect-mongo")(session)
 
 const connectDB = require("./config/database");
-const handlebars = require("./helpers/handlebars")
+
+const { truncate, stripTags } = require("./helpers/handebarsHelpers");
+
 
 
 // Load Config
@@ -38,8 +40,9 @@ if (process.env.NODE_ENV === "development") {
 
 
 // Handlebars
-app.engine(".hbs", exphbs({ defaultLayout: "main", extname: "hbs" }));
+app.engine(".hbs", exphbs({helpers: {truncate, stripTags}, defaultLayout: "main", extname: "hbs" }));
 app.set("view engine", ".hbs");
+
 
 // sessions
 app.use(
@@ -56,7 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Static
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 // routes compression
 app.use(compression())

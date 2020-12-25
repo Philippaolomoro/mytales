@@ -11,22 +11,7 @@ router.get(
 // @desc google auth callback
 router.get(
 	"/google/callback",
-	passport.authenticate("google", { failureRedirect: "/" }),
-	(req, res) => {
-		res.redirect("/dashboard");
-	}
-);
-
-// @desc auth with facebook
-router.get(
-	"/facebook",
-	passport.authenticate("facebook", { scope: ["public_profile", "email"] })
-);
-
-// @desc facebook auth callback
-router.get(
-	"/facebook/callback",
-	passport.authenticate("facebook", { failureRedirect: "/" }),
+	passport.authenticate("google", { failureRedirect: "/login" }),
 	(req, res) => {
 		res.redirect("/dashboard");
 	}
