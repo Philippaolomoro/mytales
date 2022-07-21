@@ -6,17 +6,15 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const exphbs = require("express-handlebars");
+const { engine } = require("express-handlebars");
 const passport = require("passport");
 
 const session = require("express-session");
-const MongoStore= require("connect-mongo")(session)
+const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/database");
 
 const { truncate, stripTags } = require("./helpers/handebarsHelpers");
-
-
 
 // Load Config
 dotenv.config();
@@ -28,30 +26,35 @@ connectDB();
 
 const app = express();
 
-app.use(helmet())
+app.use(helmet());
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Morgan-Login
 if (process.env.NODE_ENV === "development") {
-	app.use(morgan("dev"));
+  app.use(morgan("dev"));
 }
 
-
 // Handlebars
-app.engine(".hbs", exphbs({helpers: {truncate, stripTags}, defaultLayout: "main", extname: "hbs" }));
+app.engine(
+  ".hbs",
+  engine({
+    helpers: { truncate, stripTags },
+    defaultLayout: "main",
+    extname: "hbs",
+  })
+);
 app.set("view engine", ".hbs");
-
 
 // sessions
 app.use(
-	session({
-		secret: "diamond phil",
-		resave: false,
-		saveUninitialized: false,
-		store: new MongoStore({mongooseConnection: mongoose.connection})
-	})
+  session({
+    secret: "diamond phil",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
 );
 
 // Passport Middlewares
@@ -62,19 +65,19 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, "/public")));
 
 // routes compression
-app.use(compression())
+app.use(compression());
 
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
-app.use("/stories", require("./routes/stories"))
+app.use("/stories", require("./routes/stories"));
 
 const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT);
 
 server.on("listening", () => {
-	if (process.env.NODE_ENV === "development"){
-		console.log(`Tales app listening on port ${server.address().port}`)
-	}
+  if (process.env.NODE_ENV === "development") {
+    console.log(`Tales app listening on port ${server.address().port}`);
+  }
 });
