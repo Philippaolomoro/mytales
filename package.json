@@ -2,7 +2,7 @@
 	"name": "my-tales",
 	"version": "1.0.0",
 	"engines": {
-		"node": "^10.19.0"
+		"node": "^18.5.0"
 	},
 	"private": true,
 	"description": "Public and private stories of user",
