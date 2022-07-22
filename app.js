@@ -77,7 +77,5 @@ const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT);
 
 server.on("listening", () => {
-  if (process.env.NODE_ENV === "development") {
-    console.log(`Tales app listening on port ${server.address().port}`);
-  }
+  console.log(`Tales app listening on port ${server.address().port}`);
 });
