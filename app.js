@@ -1,10 +1,11 @@
+require("dotenv").config();
 const path = require("path");
 const compression = require("compression");
 const express = require("express");
 const helmet = require("helmet");
 
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+
 const morgan = require("morgan");
 const { engine } = require("express-handlebars");
 const passport = require("passport");
@@ -15,9 +16,6 @@ const MongoStore = require("connect-mongo")(session);
 const connectDB = require("./config/database");
 
 const { truncate, stripTags } = require("./helpers/handebarsHelpers");
-
-// Load Config
-dotenv.config();
 
 // Passport config
 require("./config/passport")(passport);
