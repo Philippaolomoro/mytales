@@ -3,19 +3,16 @@ const path = require("path");
 const compression = require("compression");
 const express = require("express");
 const helmet = require("helmet");
-
 const mongoose = require("mongoose");
-
-const morgan = require("morgan");
 const { engine } = require("express-handlebars");
 const passport = require("passport");
-
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/database");
-
 const { truncate, stripTags } = require("./helpers/handebarsHelpers");
+const morganUtils = require("./utils/morgan")
+const logger = require("./utils/logger")
 
 // Passport config
 require("./config/passport")(passport);
@@ -29,10 +26,12 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(morganUtils);
+
 // Morgan-Login
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+// }
 
 // Handlebars
 app.engine(
@@ -75,5 +74,5 @@ const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT);
 
 server.on("listening", () => {
-  console.log(`Tales app listening on port ${server.address().port}`);
+  logger.debug(`Tales app listening on port ${server.address().port}`);
 });
