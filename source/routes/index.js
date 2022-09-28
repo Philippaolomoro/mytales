@@ -2,8 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { isLoggedIn, isGuest } = require("../middleware/auth");
-const Story = require("../models/Story");
-const User = require("../models/User");
+const Story = require("../models/story.model");
+const User = require("../models/user.model");
 const AuthController = require("../controllers/authController");
 const { Router } = require("express");
 

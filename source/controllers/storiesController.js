@@ -1,4 +1,4 @@
-const Story = require("../models/Story");
+const Story = require("../models/story.model");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 const StoryController = {

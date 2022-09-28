@@ -1,10 +1,8 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const LocalStrategy = require("passport-local");
 
-const User = require("../models/User");
+const User = require("../models/user.model.js");
 const PassportController = require("../controllers/passportController")
-
-const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = function (passport) {
 	passport.serializeUser((user, done) => {
