@@ -28,11 +28,6 @@ app.use(express.json());
 
 app.use(morganUtils);
 
-// Morgan-Login
-// if (process.env.NODE_ENV === "development") {
-//   app.use(morgan("dev"));
-// }
-
 // Handlebars
 app.engine(
   ".hbs",
@@ -47,7 +42,7 @@ app.set("view engine", ".hbs");
 // sessions
 app.use(
   session({
-    secret: "diamond phil",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
