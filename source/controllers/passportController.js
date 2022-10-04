@@ -1,5 +1,4 @@
 const User = require ("../models/user.model");
-const GoogleUser = require("../models/GoogleUser")
 const bcrypt = require("bcryptjs")
 
 let PassportController = {
@@ -28,21 +27,22 @@ let PassportController = {
 		}
   },
 
-  passportGoogle: async(accessToken, refreshToken, profile, done) => {
+  passportGoogle: async( profile, done ) => {
 		let newUser = {
-			googleId: profile.id,
+			id: profile.id,
 			displayName: profile.displayName,
 			firstName: profile.name.givenName,
 			lastName: profile.name.familyName,
 			image: profile.photos[0].value,
+			signupMode: "Google"
 		};
 		try {
-			let googleUser = await GoogleUser.findOne({ googleId: profile.id });
+			let googleUser = await User.findOne({ id: profile.id });
 
 			if (googleUser) {
 				done(null, googleUser);
 			} else {
-				user = await GoogleUser.create(newUser);
+				user = await User.create(newUser);
 				done(null, user);
 			}
 		} catch (err) {

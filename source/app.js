@@ -34,10 +34,11 @@ app.engine(
   engine({
     helpers: { truncate, stripTags },
     defaultLayout: "main",
-    extname: "hbs",
+    extname: ".hbs",
   })
 );
 app.set("view engine", ".hbs");
+app.set("views", "./views")
 
 // sessions
 app.use(

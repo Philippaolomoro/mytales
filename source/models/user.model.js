@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
 	image: {
 		type: String,
 	},
+	signupMode:{
+		type: String,
+		enum: ["Google", "Local"]
+	},
 	createdAt: {
 		type: Date,
 		default: Date.now,
