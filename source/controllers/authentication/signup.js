@@ -3,32 +3,32 @@ const User = require("../../models/user.model");
 
 const SignupController = {
   localSignUp: async (req, res) => {
-    const data = req.body
+    const data = req.body;
     try {
       const user = await User.findOne({ email: data.email });
       if (!user) {
         const newUser = new User({
           ...data,
-          signupMode: "Local"
+          signupMode: "Local",
         });
         await newUser.save((err) => {
           if (err) {
             logger.error(err);
-            res.render("error/500",);
-            return
+            res.render("error/500");
+            return;
           }
           res.redirect("entrance/login");
 
-          return
+          return;
         });
       } else {
         res.render("pages/entrance/register", {
-          errorMessage: "emailExists"
-        })
+          errorMessage: "emailExists",
+        });
       }
     } catch (err) {
       logger.error(err);
-      res.render("error/500")
+      res.render("error/500");
     }
   },
 };

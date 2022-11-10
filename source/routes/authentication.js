@@ -1,13 +1,17 @@
-const authenticationRouter = require("express").Router()
+const authenticationRouter = require("express").Router();
 
-const { SignupController } = require("../controllers/authentication")
+const { SignupController } = require("../controllers/authentication");
 
 authenticationRouter.get("/register", (req, res) => {
   res.render("pages/entrance/register", {
     errorMessage: "emailExists",
-    errorMessage: "saveError"
-  })
-})
-authenticationRouter.post("/register", SignupController.localSignUp,)
+    errorMessage: "saveError",
+  });
+});
+authenticationRouter.post("/register", SignupController.localSignUp);
 
-module.exports = authenticationRouter
+authenticationRouter.get("/login", (req, res) => {
+  res.render("pages/entrance/login");
+});
+
+module.exports = authenticationRouter;
