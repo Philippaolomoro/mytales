@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/database");
@@ -38,6 +39,8 @@ app.use(
   })
 );
 
+app.use(flash())
+
 // Passport Middlewares
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,9 +52,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(compression());
 
 // Routes
-app.use("/", require("./routes/index.route"));
-app.use("/auth", require("./routes/auth"));
-app.use("/stories", require("./routes/stories"));
+app.use("/", require("./routes/index"))
 
 const PORT = process.env.PORT || 3000;
 

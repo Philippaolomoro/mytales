@@ -8,9 +8,7 @@ const AuthController = require("../controllers/authController");
 const { Router } = require("express");
 
 // @desc landing page
-router.get("/", (req, res) => {
-	res.render("pages/index")
-});
+
 
 router.get("/dashboard", (req, res) => {
 	res.render("layout/dashboard")
@@ -20,18 +18,9 @@ router.get("/login", isGuest, (req, res) => {
 	res.render("login");
 });
 
-router.get("/register", isGuest, (req, res) => {
+router.get("/register", (req, res) => {
 	res.render("register")
 })
-
-// router.get("/dashboard", isLoggedIn, async (req, res) => {
-// 	try {
-// 		const stories = await Story.find({user: req.user.id}).lean()
-// 		res.render("dashboard", {name: req.user.firstName, stories});
-// 	} catch (error) {
-// 		res.render("error/serverError")
-// 	}
-// });
 
 // @desc local registration and login
 router.post("/local-signup", AuthController.localSignUp)
