@@ -4,15 +4,13 @@ const compression = require("compression");
 const express = require("express");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
-const { engine } = require("express-handlebars");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/database");
-const { truncate, stripTags } = require("./helpers/handebarsHelpers");
-const morganUtils = require("./utils/morgan")
-const logger = require("./utils/logger")
+const morganUtils = require("./utils/morgan");
+const logger = require("./utils/logger");
 
 // Passport config
 require("./config/passport")(passport);
@@ -28,17 +26,7 @@ app.use(express.json());
 
 app.use(morganUtils);
 
-// Handlebars
-app.engine(
-  ".hbs",
-  engine({
-    helpers: { truncate, stripTags },
-    defaultLayout: "main",
-    extname: ".hbs",
-  })
-);
-app.set("view engine", ".hbs");
-app.set("views", "./views")
+app.set("view engine", "ejs");
 
 // sessions
 app.use(
@@ -61,7 +49,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(compression());
 
 // Routes
-app.use("/", require("./routes/index"));
+app.use("/", require("./routes/index.route"));
 app.use("/auth", require("./routes/auth"));
 app.use("/stories", require("./routes/stories"));
 

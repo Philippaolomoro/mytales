@@ -8,7 +8,7 @@
 	"description": "Public and private stories of user",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js",
+		"start": "node ./source/app.js",
 		"dev": "nodemon ./source/app.js"
 	},
 	"author": "Philippa Olomoro",
