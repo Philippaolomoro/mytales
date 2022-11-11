@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const expresslayouts = require("express-ejs-layouts")
 const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/database");
@@ -27,6 +28,7 @@ app.use(express.json());
 
 app.use(morganUtils);
 
+app.use(expresslayouts)
 app.set("view engine", "ejs");
 
 // sessions
