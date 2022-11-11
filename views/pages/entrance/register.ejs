@@ -4,9 +4,21 @@
     <div>
       <p>Let's get started! Becoming a member is free and only takes a few minutes.</p>
       <hr/>
+      <div>
+        <% if(typeof alert != 'undefined') { %>
+          <% alert.forEach(function(error) { %>
+            <div class="alert alert-warning alert-dismissible fade show">
+              <%= error.msg %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
       <form action="/auth/register" method="post">
         <div>
-          <% if (errorMessage === "emailExists") { %>
+          <% if (errorMessage == "emailExists") { %>
             <p><small>It looks like there's already an account with your email address. If you forgot your password, you can recover it <a href="password/forgot">here</a>.</small></p>
           <% } %>
         </div>

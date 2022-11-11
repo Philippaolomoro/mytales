@@ -1,9 +1,21 @@
+const { validationResult } = require("express-validator");
+
 const logger = require("../../utils/logger");
 const User = require("../../models/user.model");
 
 const SignupController = {
   localSignUp: async (req, res) => {
     const data = req.body;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const alert = errors.array();
+      res.render("pages/entrance/register", {
+        alert
+      });
+      return;
+    }
+
     try {
       const user = await User.findOne({ email: data.email });
       if (!user) {
@@ -25,6 +37,7 @@ const SignupController = {
         res.render("pages/entrance/register", {
           errorMessage: "emailExists",
         });
+        return;
       }
     } catch (err) {
       logger.error(err);
