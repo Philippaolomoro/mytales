@@ -16,25 +16,26 @@
           <% }) %>
         <% } %>
       </div>
-      <form action="/auth/register" method="post">
-        <div>
-          <% if (errorMessage == "emailExists") { %>
+      <div>
+          <% if ("errorMessage" == "emailExists") { %>
             <p><small>It looks like there's already an account with your email address. If you forgot your password, you can recover it <a href="password/forgot">here</a>.</small></p>
           <% } %>
         </div>
-        <div>
+      <form action="/auth/register" method="post">
+        <div  class="mb-3">
           <label for="fullName">First name</label>
-          <input id="fullName" autofocus type="text" placeholder="Full Name" name="fullName">
+          <input id="fullName" autofocus type="text" placeholder="Full Name" name="fullName" value= "<%= form.fullName %>">
+
         </div>
-        <div>
+        <div class="mb-3">
           <label for="email">Email address</label>
-          <input id="email" type="email" placeholder="Email" name="email">
+          <input id="email" type="email" placeholder="Email" name="email" value= "<%= form.email %>">
         </div>
-        <div>
+        <div class="mb-3">
           <label for="password">Choose a password</label>
-          <input id="password" type="password" placeholder="Password" name="password">
+          <input id="password" type="password" placeholder="Password" name="password" value= "<%= form.pasword %>">
         </div>
-        <div>
+        <div class="mb-3">
           <button type="submit">Create account</button>
         </div>
       <form>

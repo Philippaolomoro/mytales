@@ -5,22 +5,32 @@ const User = require("../../models/user.model");
 
 const SignupController = {
   localSignUp: async (req, res) => {
-    const data = req.body;
+    const {fullName, email, password} = req.body;
+
+
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const form = [{
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: req.body.password,
+      }];
       const alert = errors.array();
       res.render("pages/entrance/register", {
-        alert
+        alert: alert,
+        form: form
       });
       return;
     }
 
     try {
-      const user = await User.findOne({ email: data.email });
+      const user = await User.findOne({ email });
       if (!user) {
         const newUser = new User({
-          ...data,
+          email,
+          password,
+          fullName,
           signupMode: "Local",
         });
         await newUser.save((err) => {
@@ -35,7 +45,7 @@ const SignupController = {
         });
       } else {
         res.render("pages/entrance/register", {
-          errorMessage: "emailExists",
+          "errorMessage" : "emailExists",
         });
         return;
       }
